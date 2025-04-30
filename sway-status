@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Date
+date=$(date "+%a %F %R")
+
+# Alsa master volume
+volume=$(amixer get Master | grep "Right:" | cut -f 7,8 -d " ")
+
+# Battery percentage
+battery=$(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep "percentage:" | tr -s ' ' | cut -d' ' -f3)
+
+# Status bar
+echo $volume "|" $battery "|" $date
